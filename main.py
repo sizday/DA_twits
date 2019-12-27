@@ -74,16 +74,16 @@ def adjectives(document):
     list_word = s.split('\n')
     coeff = []
     k1 = k2 = 0
-    pos = ['', '', '', '', '']
-    neg = ['', '', '', '', '']
-    pos_n = [0, 0, 0, 0, 0]
-    neg_n = [0, 0, 0, 0, 0]
+    pos = ['', '', '']
+    neg = ['', '', '']
+    pos_n = [0, 0, 0]
+    neg_n = [0, 0, 0]
     for i in range(len(list_word)):
         c = list_word[i].split(' ')
         coeff.append(c[1])
     f8.write("Top-3 positive:\n")
     for i in range(len(document)):
-        if (k1 < 5) & (coeff[i] == '1'):
+        if (k1 < 3) & (coeff[i] == '1'):
             p = morph.parse(document[i][0])[0]
             tags = p.tag.POS
             if tags == 'ADJF':
@@ -93,7 +93,7 @@ def adjectives(document):
                 k1 += 1
     f8.write("\nTop-3 negative:\n")
     for i in range(len(document)):
-        if (k2 < 5) & (coeff[i] == '-1'):
+        if (k2 < 3) & (coeff[i] == '-1'):
             p = morph.parse(document[i][0])[0]
             tags = p.tag.POS
             if tags == 'ADJF':
